@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 
-// GET - bütün məhsulları gətir
+// GET - bütün məhsullar (admin görür)
 export async function GET() {
   await connectDB();
 
@@ -10,13 +10,13 @@ export async function GET() {
   return Response.json(products);
 }
 
-// POST - yeni məhsul əlavə et
+// POST - yeni məhsul əlavə (admin)
 export async function POST(req) {
   await connectDB();
 
   const body = await req.json();
 
-  const newProduct = await Product.create(body);
+  const product = await Product.create(body);
 
-  return Response.json(newProduct);
+  return Response.json(product);
 }

@@ -1,0 +1,55 @@
+.card {
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  transition: box-shadow 1s ease, transform 0.5s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  transform: translateY(-5px);
+}
+
+.productCard_head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  margin: 20px 0;
+}
+
+.productImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.productName {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.productDescription {
+  font-size: 14px;
+  max-width: 220px;
+}
+
+.instagramButton {
+  position: absolute;
+  background: #000;
+  color: #fff;
+  border: none;
+  top: 35%;
+  left: 15%;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border-radius: 20px;
+}/*# sourceMappingURL=ProductCard.module.css.map */

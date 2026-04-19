@@ -1,7 +1,7 @@
 'use client'
 import style from '@/styles/productCard/ProductCard.module.scss'
 import { FaInstagram, FaTiktok, FaLink } from "react-icons/fa";
-import img from "../public/cd99b263-8ec1-4c5b-b408-7857f26e1854.png"
+import img from "../public/ChatGPT Image Apr 20, 2026, 02_37_41 AM.png"
 import { IoIosArrowForward } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

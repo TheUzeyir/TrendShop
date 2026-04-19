@@ -1,0 +1,105 @@
+.header_container {
+  background: #050505;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+/* LOGO */
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  background: linear-gradient(135deg, #ffffff, #b0b0b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 25px rgba(255,255,255,0.12);
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #ffffff, #666);
+  transition: 0.3s ease;
+}
+
+.logo:hover::after {
+  width: 100%;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+/* LINK */
+.nav_link {
+  position: relative;
+  color: #9ca3af;
+  text-decoration: none;
+  padding: 5px 0;
+  transition: 0.3s;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav_link:hover {
+  color: #ffffff;
+}
+
+/* underline animation */
+.nav_link .underline {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #ffffff, #888);
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav_link:hover .underline {
+  transform: scaleX(1);
+}
+
+/* ACTIVE LINK */
+.active {
+  color: #ffffff;
+}
+
+.active .underline {
+  transform: scaleX(1);
+}
+
+/* optional hover glow nav item */
+.nav_link:hover {
+  text-shadow: 0 0 10px rgba(255,255,255,0.1);
+}

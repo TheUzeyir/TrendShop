@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import style from "@/styles/header/header.module.scss";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -7,6 +8,16 @@ import { usePathname, useRouter } from "next/navigation";
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -14,7 +25,7 @@ export default function Header() {
     { name: "Orders", path: "/order" },
   ];
 
-  const handleAdminClick = () => {
+    const handleAdminClick = () => {
     const storedUser = localStorage.getItem("user");
 
     if (!storedUser) {
@@ -25,22 +36,20 @@ export default function Header() {
     router.push("/admin");
   };
 
+
   return (
-    <header className={style.header_container}>
+    <header
+      className={`${style.header_container} ${
+        scrolled ? style.scrolled : ""
+      }`}
+    >
       <div className="container">
         <div className={style.header}>
-
-          {/* LOGO */}
-          <h1
-            className={style.logo}
-            onClick={() => router.push("/")}
-          >
+          <h1 className={style.logo} onClick={() => router.push("/")}>
             TrendShop
           </h1>
 
-          {/* NAV */}
           <nav className={style.nav}>
-
             {navItems.map((item) => {
               const isActive = pathname === item.path;
 
@@ -57,8 +66,6 @@ export default function Header() {
                 </Link>
               );
             })}
-
-            {/* ADMIN */}
             <div
               onClick={handleAdminClick}
               className={`${style.nav_link} ${
@@ -69,9 +76,7 @@ export default function Header() {
               Profile
               <span className={style.underline}></span>
             </div>
-
           </nav>
-
         </div>
       </div>
     </header>

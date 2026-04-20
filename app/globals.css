@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -5,7 +11,8 @@ body {
 
 .container {
   margin: 0 auto;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
+  margin: 0 60px;
 }
 
 .swiper {
@@ -18,3 +25,7 @@ body {
 .slick-slide > div {
   padding: 10px;
 }
+
+/* .slick-slide img{
+  width: 200px;
+} */

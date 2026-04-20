@@ -3,7 +3,6 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
     transition: box-shadow 1s ease, transform .5s ease;
-    cursor: pointer;
 }
 
 .card:hover {
@@ -14,7 +13,7 @@
 .productCard_head {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
   text-align: center;
   gap: 10px;
   border-bottom: 1px solid gray;
@@ -22,11 +21,16 @@
   margin: 20px 0;
 }
 
+
 .productImage {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.productCard_main{
+  margin-top: 20px;
 }
 
 .productName {
@@ -36,7 +40,7 @@
 
 .productDescription {
   font-size: 14px;
-  max-width: 220px;
+  height: 20px;
 }
 
 .instagramButton {
@@ -44,11 +48,130 @@
   background: #000;
   color: #fff;
   border: none;
-  top: 35%;
-  left:15%;
+  top:32%;
+  left:24%;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 13px;
   letter-spacing: 1px;
   border-radius: 20px;
+}
+
+
+.productCardCategory {
+  margin-bottom: 20px;
+
+  .slick-slide {
+    padding: 0 10px;
+  }
+}
+
+.categoryItem {
+  text-align: center;
+  
+  p {
+    background: #111;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  p:hover {
+    background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
+  }
+}
+
+.productCard_main_card {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+  gap: 12px;
+  margin:10px 20px;
+  
+}
+
+.productCard_main_card:hover{
+  color: white;
+  background: black;
+}
+
+.productCard_main_card img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.productCard_main_card div {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productCard_main_card h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.productCard_main_card p {
+  font-size: 13px;
+  margin: 2px 0 0;
+  color: #9ca3af;
+}
+
+/* SAĞ BUTTON */
+.productCard_main_card button {
+  background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
+  border: none;
+  color: white;
+
+  padding: 6px 10px;
+  border-radius: 10px;
+
+  font-size: 12px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  transition: 0.3s ease;
+}
+
+.productCard_main_card button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.productCard_footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productCard_footer  button{
+  padding: 10px;
+  border-radius: 8px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.productCard_footer_navigateBox{
+  margin: 10px 0;
+  font-size: 20px;
+  display: flex;
+  gap: 15px;
 }

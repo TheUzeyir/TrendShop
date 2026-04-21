@@ -11,7 +11,6 @@ body {
 
 .container {
   margin: 0 auto;
-  /* padding: 10px 20px; */
   margin: 0 60px;
 }
 
@@ -26,6 +25,8 @@ body {
   padding: 10px;
 }
 
-/* .slick-slide img{
-  width: 200px;
-} */
+@media (max-width:968px) {
+  .container {
+    margin: 0 10px;
+  }
+}

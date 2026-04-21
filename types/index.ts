@@ -6,6 +6,7 @@ export type ProductItem = {
 
 export type Product = {
   category: string;
+  sosial: string;
   name: string;
   description: string;
   person: string;

@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className={style.footer}>
 
       <div className={style.footer_container}>
-
+ 
         {/* LOGO */}
         <div className={style.col}>
           <h2 className={style.logo}>TrendShop</h2>

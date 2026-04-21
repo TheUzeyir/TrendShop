@@ -3,18 +3,32 @@
 import style from "@/styles/productCard/ProductCard.module.scss";
 import { FaInstagram, FaTiktok, FaLink } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
-import Slider from "react-slick";
+
+import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import data from "@/data/data.json";
 import { Product, ProductItem } from "@/types/index";
+import { useMemo } from "react";
+
+// 🔥 IMPORTANT: SSR disabled (fixes hydration error)
+const Slider = dynamic(() => import("react-slick"), {
+  ssr: false,
+});
 
 const typedData = data as Product[];
 
-// random 5 item seç
+// ✅ stable shuffle (NO Math.random)
 const getRandomItems = (items: ProductItem[]) => {
-  return [...items].sort(() => 0.4 - Math.random()).slice(0, 4);
+  const copy = [...items];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = (i * 31 + 7) % (i + 1); // deterministic pseudo-random
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy.slice(0, 4);
 };
 
 export default function ProductCard() {
@@ -38,14 +52,22 @@ export default function ProductCard() {
     autoplaySpeed: 2000,
   };
 
+  // ✅ stable once-only data
+  const randomizedData = useMemo(() => {
+    return typedData.map((item) => ({
+      ...item,
+      randomItems: getRandomItems(item.items),
+    }));
+  }, []);
+
   return (
     <div className="container">
       <div className={style.ProductCardContainer}>
 
         {/* CATEGORY SLIDER */}
         <Slider {...categorySettings} className={style.productCardCategory}>
-          {typedData.map((item, index) => (
-            <div key={index} className={style.categoryItem}>
+          {typedData.map((item, idx) => (
+            <div key={item.category ?? idx} className={style.categoryItem}>
               <p>{item.category}</p>
             </div>
           ))}
@@ -53,9 +75,11 @@ export default function ProductCard() {
 
         {/* PRODUCT SLIDER */}
         <Slider {...settings} className={style.productCard}>
-
-          {typedData.map((item, index) => (
-            <div key={index} className={style.card}>
+          {randomizedData.map((item) => (
+            <div
+              key={`${item.name}-${item.link}`}
+              className={style.card}
+            >
 
               {/* HEAD */}
               <div className={style.productCard_head}>
@@ -66,20 +90,24 @@ export default function ProductCard() {
                 />
 
                 <h2 className={style.productName}>{item.name}</h2>
-                <p className={style.productDescription}>{item.description}</p>
+                <p className={style.productDescription}>
+                  {item.description}
+                </p>
 
-                <a href={item.link} target="_blank">
+                <a href={item.link} target="_blank" rel="noreferrer">
                   <button className={style.instagramButton}>
-                    Instagram Məhsul Linki
+                    {item.sosial} Məhsul Linki
                   </button>
                 </a>
               </div>
 
               {/* MAIN */}
               <div className={style.productCard_main}>
-
-                {getRandomItems(item.items).map((product, i) => (
-                <div className={style.productCard_main_card}>
+                {item.randomItems.map((product, idx) => (
+                  <div
+                    key={`${item.name}-${product.name}-${idx}`}
+                    className={style.productCard_main_card}
+                  >
                     <img src={product.img} alt={product.name} />
 
                     <div>
@@ -92,7 +120,6 @@ export default function ProductCard() {
                     </button>
                   </div>
                 ))}
-
               </div>
 
               {/* FOOTER */}
@@ -100,8 +127,11 @@ export default function ProductCard() {
                 <button>
                   Bütün məhsullara bax <IoIosArrowForward />
                 </button>
+
                 <div className={style.productCard_footer_navigateBox}>
-                  <FaInstagram className={style.productCard_footer_navigateBox_icon} />
+                  <FaInstagram
+                    className={style.productCard_footer_navigateBox_icon}
+                  />
                   <FaTiktok className={`${style.icon} ${style.tiktok}`} />
                   <FaLink className={`${style.icon} ${style.link}`} />
                 </div>
@@ -109,8 +139,8 @@ export default function ProductCard() {
 
             </div>
           ))}
-
         </Slider>
+
       </div>
     </div>
   );

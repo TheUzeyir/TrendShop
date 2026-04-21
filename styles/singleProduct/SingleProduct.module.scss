@@ -1,0 +1,332 @@
+/* =========================
+   MOBILE FEED (TIKTOK STYLE)
+========================= */
+
+.feedContainer {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  background: #000;
+}
+
+.feedContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.feedCard {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+  background: #000;
+}
+
+/* =========================
+   MEDIA (BACKGROUND LAYER)
+========================= */
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.4)
+    );
+  }
+}
+
+/* =========================
+   USER BOX (TOP LEFT)
+========================= */
+
+  .userImg {
+    position: absolute;
+    z-index: 55555;
+    top: 24%;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+  }
+
+/* =========================
+   HEART (TOP RIGHT)
+========================= */
+
+.heart {
+  position: absolute;
+  right: 15px;
+  top: 30%;
+  font-size:35px;
+  z-index: 5;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.liked {
+  color: red;
+}
+
+/* =========================
+   BOTTOM CONTENT
+========================= */
+
+.bottom_container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 20px 15px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.bottom_container h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 100px;
+}
+
+.bottom_container p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.85;
+  position: absolute;
+  bottom: 80px;
+}
+
+/* =========================
+   PRODUCT INFO + BUTTON
+========================= */
+
+.bottom {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 130px;
+}
+
+.productInfo {
+  h4 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  span {
+    font-size: 13px;
+    opacity: 0.9;
+  }
+}
+
+.bottom button {
+  background: #ff2d55;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* =========================
+   COMMENT BUTTON
+========================= */
+
+.actions {
+  position: absolute;
+  right: 15px;
+  top: 320px;
+  z-index: 5;
+
+  button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 35px;
+  }
+}
+
+/* =========================
+   COMMENT MODAL
+========================= */
+
+.commentOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.commentSheet {
+  width: 100%;
+  height: 70vh;
+  background: #111;
+  border-radius: 20px 20px 0 0;
+  padding: 15px;
+  color: #fff;
+  animation: slideUp 0.35s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    font-size: 16px;
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}
+
+.commentList {
+  height: calc(70vh - 120px);
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-right: 5px;
+}
+
+.commentItem {
+  background: #222;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.commentInput {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+
+  input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #222;
+    color: #fff;
+    outline: none;
+  }
+
+  button {
+    background: #ff2d55;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+/* =========================
+   DESKTOP SLIDER
+========================= */
+
+.sliderContainer {
+  padding: 40px 0;
+}
+
+.card {
+  position: relative;
+  background: #000;
+  border-radius: 24px;
+  overflow: hidden;
+  max-width: 320px;
+  height: 520px;
+  margin: 0 auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (min-width: 968px) {
+  .sliderContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 968px) {
+  .sliderContainer {
+    display: none;
+  }
+
+  .feedContainer {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    height: 500px;
+  }
+}

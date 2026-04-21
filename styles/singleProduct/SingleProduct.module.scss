@@ -57,7 +57,7 @@
   .userImg {
     position: absolute;
     z-index: 55555;
-    top: 24%;
+    top: 32%;
     right: 20px;
     width: 42px;
     height: 42px;
@@ -73,7 +73,7 @@
 .heart {
   position: absolute;
   right: 15px;
-  top: 30%;
+  top: 38%;
   font-size:35px;
   z-index: 5;
   color: #fff;
@@ -176,18 +176,15 @@
 .actions {
   position: absolute;
   right: 15px;
-  top: 320px;
+  top: 45%;
   z-index: 5;
-
-  button {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 35px;
-  }
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 35px;
 }
 
 /* =========================
@@ -284,7 +281,7 @@
    DESKTOP SLIDER
 ========================= */
 
-.sliderContainer {
+.feedContainer {
   padding: 40px 0;
 }
 
@@ -309,16 +306,12 @@
 ========================= */
 
 @media (min-width: 968px) {
-  .sliderContainer {
+  .feedContainer {
     display: none;
   }
 }
 
 @media (max-width: 968px) {
-  .sliderContainer {
-    display: none;
-  }
-
   .feedContainer {
     display: block;
   }

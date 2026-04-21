@@ -175,3 +175,9 @@
   display: flex;
   gap: 15px;
 }
+
+@media  (max-width:968px) {
+  .ProductCardContainer{
+    display: none;
+  }
+}

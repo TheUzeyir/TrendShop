@@ -2,7 +2,7 @@
 
 import style from "@/styles/singleProduct/SingleProduct.module.scss";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart,FaComment } from "react-icons/fa";
 
 import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
@@ -38,7 +38,7 @@ const getRandomItem = (items: ItemType["items"]) => {
   const index = Math.floor(Math.random() * items.length);
   return items[index];
 };
- 
+  
 export default function SingleProductSlider() {
   const [liked, setLiked] = useState<LikeMap>({});
   const [openComments, setOpenComments] = useState<string | null>(null);
@@ -84,61 +84,43 @@ export default function SingleProductSlider() {
   };
 
   return (
-    <div className="container">
-      <div className={style.sliderContainer}>
-        <Slider {...settings}>
-          {randomizedData.map((item) => {
-            const product = item.randomItem;
-            const key = `${item.name}-${product.name}`;
+    <div className={style.feedContainer}>
+      {randomizedData.map((item, index) => {
+        const product = item.randomItem;
+        const key = `${item.name}-${product.img}-${index}`;
 
-            return (
-              <div key={key} className={style.card}>
+        return (
+          <div key={key} className={style.feedCard}>
+            <div
+              className={`${style.heart} ${liked[key] ? style.liked : ""}`}
+              onClick={() => toggleLike(key)}
+            >
+              {liked[key] ? <FaHeart /> : <FaRegHeart />}
+            </div>
+              <img className={style.userImg} src={item.person} alt={item.name} />
+            <div className={style.media}>
+              <img src={product.img} alt={product.name} />
+            </div>
 
-                {/* ❤️ HEART */}
-                <div
-                  className={`${style.heart} ${liked[key] ? style.liked : ""}`}
-                  onClick={() => toggleLike(key)}
-                >
-                  {liked[key] ? <FaHeart /> : <FaRegHeart />}
-                </div>
-
-                {/* 👤 USER */}
-                <div className={style.userBox}>
-                  <img src={item.person} alt={item.name} />
-                  <div>
-                    <h3>{item.name}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-
-                {/* 🖼️ MEDIA */}
-                <div className={style.media}>
-                  <img src={product.img} alt={product.name} />
-                </div>
-
-                {/* 🛒 BOTTOM */}
+            <div className={style.bottom_container}>
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
                 <div className={style.bottom}>
-                  <div className={style.productInfo}>
+                <div className={style.productInfo}>
                     <h4>{product.name}</h4>
                     <span>{product.price}</span>
-                  </div>
+                </div>
 
-                  <button>
+                <button>
                     Sifariş et <IoIosArrowForward />
-                  </button>
+                </button>
                 </div>
+            </div>
 
-                {/* 💬 COMMENTS */}
-                <div className={style.actions}>
-                  <button onClick={() => setOpenComments(key)}>
-                    💬 Comments
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </Slider>
-      </div>
+            <button className={style.actions} onClick={() => setOpenComments(key)}><FaComment /></button>
+          </div>
+        );
+      })}
 
       {/* 💬 COMMENT DRAWER */}
       {openComments && (

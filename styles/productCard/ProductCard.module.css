@@ -165,4 +165,10 @@
   font-size: 20px;
   display: flex;
   gap: 15px;
+}
+
+@media (max-width: 968px) {
+  .ProductCardContainer {
+    display: none;
+  }
 }/*# sourceMappingURL=ProductCard.module.css.map */

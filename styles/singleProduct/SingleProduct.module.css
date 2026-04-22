@@ -31,9 +31,8 @@
 }
 .media img {
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  margin-top: 20px;
+  height: 90%;
 }
 .media::after {
   content: "";
@@ -48,10 +47,10 @@
 .userImg {
   position: absolute;
   z-index: 55555;
-  top: 32%;
-  right: 20px;
-  width: 42px;
-  height: 42px;
+  top: 34%;
+  right: 18px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -64,8 +63,8 @@
 .heart {
   position: absolute;
   right: 15px;
-  top: 38%;
-  font-size: 35px;
+  top: 40%;
+  font-size: 20px;
   z-index: 5;
   color: #fff;
   cursor: pointer;
@@ -96,7 +95,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .bottom_container h3 {
@@ -159,7 +158,7 @@
 .actions {
   position: absolute;
   right: 15px;
-  top: 45%;
+  top: 47%;
   z-index: 5;
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -167,7 +166,7 @@
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 35px;
+  font-size: 20px;
 }
 
 /* =========================

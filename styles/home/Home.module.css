@@ -1,9 +1,8 @@
-.HomePageContainer {
-  width: 100%;
-}
-
-/* HERO */
-.HomePage {
+@charset "UTF-8";
+/* =========================
+   HERO IMAGE
+========================= */
+.HomePage_imgBox {
   position: relative;
   width: 100%;
 }
@@ -22,14 +21,26 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* TEXT */
-.MainText {
+/* =========================
+   CONTENT WRAPPER (ƏSAS FIX)
+========================= */
+.content {
   position: absolute;
-  top: 6%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  color: white;
+  top: 36%;
+  left: 8%;
+  transform: translateY(-50%);
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* =========================
+   TEXT
+========================= */
+.MainText {
+  color: white;
 }
 
 .MainText_item1 {
@@ -49,21 +60,28 @@
   color: #ccc;
 }
 
-/* BUTTONS */
-.HomePage_imgBoxbtn1 {
-  position: absolute;
-  top: 10%;
-  left: 11%;
-  transform: translate(-50%, -50%);
+/* =========================
+   BUTTONS
+========================= */
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.HomePage_imgBoxbtn1,
+.HomePage_imgBoxbtn2 {
   padding: 15px 35px;
   border-radius: 50px;
-  border: none;
   cursor: pointer;
-  background: white;
-  color: black;
   font-size: 14px;
   transition: 0.3s;
-  z-index: 2;
+}
+
+/* BTN 1 */
+.HomePage_imgBoxbtn1 {
+  background: white;
+  color: black;
+  border: none;
 }
 
 .HomePage_imgBoxbtn1:hover {
@@ -71,26 +89,20 @@
   color: white;
 }
 
+/* BTN 2 */
 .HomePage_imgBoxbtn2 {
-  position: absolute;
-  top: 10%;
-  left: 23%;
-  transform: translate(-50%, -50%);
-  padding: 15px 35px;
-  border-radius: 50px;
-  cursor: pointer;
   background: transparent;
   color: white;
   border: 1px solid white;
-  transition: 0.3s;
-  z-index: 2;
 }
 
 .HomePage_imgBoxbtn2:hover {
   background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
 }
 
-/* SERVICES */
+/* =========================
+   SERVICES
+========================= */
 .servicesBox {
   text-align: center;
   margin: 60px 0;
@@ -132,36 +144,9 @@
   font-size: 14px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1000px) {
-  .servicesBox_cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .MainText {
-    left: 30%;
-  }
-}
-@media (max-width: 968px) {
-  .HomePage_imgBox {
-    display: none;
-  }
-}
-@media (max-width: 600px) {
-  .servicesBox_cards {
-    grid-template-columns: 1fr;
-  }
-  .MainText {
-    left: 50%;
-    text-align: center;
-  }
-  .HomePage_imgBoxbtn1,
-  .HomePage_imgBoxbtn2 {
-    left: 50%;
-  }
-  .HomePage_imgBoxbtn2 {
-    top: 70%;
-  }
-}
+/* =========================
+   HOW IT WORKS
+========================= */
 .howItWorks {
   width: 100%;
   padding: 80px 0;
@@ -190,6 +175,7 @@
   }
 }
 .howItWorks_card {
+  position: relative;
   background: #fff;
   padding: 30px 20px;
   border-radius: 16px;
@@ -230,19 +216,9 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.howItWorks_card {
-  position: relative;
-  background: #fff;
-  padding: 30px 20px;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-  transition: 0.3s;
-}
-.howItWorks_card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
-
+/* =========================
+   CONTACT
+========================= */
 .contactBox {
   width: 100%;
   padding: 40px 20px;
@@ -321,4 +297,33 @@
 .contactBox_btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1080px) {
+  .servicesBox_cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 968px) {
+  .HomePage_imgBox {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .servicesBox_cards {
+    grid-template-columns: 1fr;
+  }
+  .content {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    text-align: center;
+  }
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }/*# sourceMappingURL=Home.module.css.map */

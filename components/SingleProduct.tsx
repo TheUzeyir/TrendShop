@@ -110,7 +110,6 @@ export default function SingleProductSlider() {
                     <h4>{product.name}</h4>
                     <span>{product.price}</span>
                 </div>
-
                 <button>
                     Sifariş et <IoIosArrowForward />
                 </button>

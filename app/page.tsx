@@ -12,6 +12,7 @@ import { FaStore, FaShareAlt } from "react-icons/fa";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { MdEmail, MdPhone } from "react-icons/md";
 import SingleProductSlider from "@/components/SingleProduct";
+import SimpleProduct from "@/components/SimpleProduct";
 
 export default function Home() {
   return (
@@ -20,17 +21,31 @@ export default function Home() {
       <div className={style.HomePage}>
         <div className={style.HomePage_imgBox}>
           <img className={style.img} src={img.src} alt="" />
+
+          <div className={style.content}>
             <div className={style.MainText}>
               <p className={style.MainText_item1}>Instagram & TikTok</p>
               <p className={style.MainText_item2}>Satış Platformanız</p>
-              <p className={style.MainText_item3}>İnstagram və TikTok'da satış edin,<br />biznesinizi büyüdün!</p>
+              <p className={style.MainText_item3}>
+                İnstagram və TikTok'da satış edin,<br />
+                biznesinizi büyüdün!
+              </p>
             </div>
-            <button className={style.HomePage_imgBoxbtn1}>Mağazaya Başla</button>
-            <button className={style.HomePage_imgBoxbtn2}>Demo İzləyin</button>
-        </div>
+
+            <div className={style.buttons}>
+              <button className={style.HomePage_imgBoxbtn1}>
+                Mağazaya Başla
+              </button>
+              <button className={style.HomePage_imgBoxbtn2}>
+                Demo İzləyin
+              </button>
+            </div>
+          </div>
+        </div> 
       <SingleProductSlider/>
+      <SimpleProduct/>
       <ProductCard/>
-        {/* <div className="container">
+        <div className="container">
           <div className={style.servicesBox}>
             <h2>Xidmətlərimiz</h2>
             <div className={style.servicesBox_cards}>
@@ -119,7 +134,7 @@ export default function Home() {
 
                 </form>
               </div>
-        </div> */}
+        </div>
       </div>
       <Footer/>
     </div>

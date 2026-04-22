@@ -5,12 +5,9 @@ import style from "@/styles/header/header.module.scss";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
-
 import { FaHome } from "react-icons/fa";
-import { FaBox } from "react-icons/fa";
-import { FaMoneyBill } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-
+ 
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
@@ -136,32 +133,32 @@ export default function Header() {
           )}
         </div>
       </header>
- <div className={style.mobileNav}>
-  <button onClick={() => router.push("/")}>
-    <FaHome />
-    <span>Home</span>
-  </button>
+      <div className={style.mobileNav}>
+        <button onClick={() => router.push("/")}>
+          <FaHome />
+          <span>Home</span>
+        </button>
 
-  <button onClick={() => router.push("/messages")}>
-    💬
-    <span>Messages</span>
-  </button>
+        <button onClick={() => router.push("/messages")}>
+          💬
+          <span>Messages</span>
+        </button>
 
-  <button onClick={() => router.push("/create")}>
-    ➕
-    <span>Create</span>
-  </button>
+        <button onClick={() => router.push("/create")}>
+          ➕
+          <span>Create</span>
+        </button>
 
-  <button onClick={handleAdminClick}>
-    <FaUser />
-    <span>Profile</span>
-  </button>
+        <button onClick={handleAdminClick}>
+          <FaUser />
+          <span>Profile</span>
+        </button>
 
-  <button onClick={() => router.push("/settings")}>
-    ⚙️
-    <span>Settings</span>
-  </button>
-</div>
+        <button onClick={() => router.push("/settings")}>
+          ⚙️
+          <span>Settings</span>
+        </button>
+      </div>
     </>
   );
 }

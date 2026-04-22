@@ -30,7 +30,7 @@ const getRandomItems = (items: ProductItem[]) => {
 
   return copy.slice(0, 4);
 };
-
+ 
 export default function ProductCard() {
   const categorySettings = {
     dots: false,
@@ -42,15 +42,41 @@ export default function ProductCard() {
     autoplaySpeed: 2500,
   };
 
-  const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  };
+const settings = {
+  dots: false,
+  arrows: false,
+  infinite: true,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+
+  responsive: [
+    {
+      breakpoint: 1080,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
+
+const getSocialIcon = (type?: string) => {
+  switch (type?.toLowerCase()) {
+    case "instagram":
+      return <FaInstagram />;
+    case "tiktok":
+      return <FaTiktok />;
+    default:
+      return <FaLink />;
+  }
+};
 
   // ✅ stable once-only data
   const randomizedData = useMemo(() => {
@@ -61,7 +87,6 @@ export default function ProductCard() {
   }, []);
 
   return (
-    <div className="container">
       <div className={style.ProductCardContainer}>
 
         {/* CATEGORY SLIDER */}
@@ -96,7 +121,7 @@ export default function ProductCard() {
 
                 <a href={item.link} target="_blank" rel="noreferrer">
                   <button className={style.instagramButton}>
-                    {item.sosial} Məhsul Linki
+                    {item.sosial} Linki
                   </button>
                 </a>
               </div>
@@ -114,10 +139,6 @@ export default function ProductCard() {
                       <h3>{product.name}</h3>
                       <p>{product.price}</p>
                     </div>
-
-                    <button>
-                      Sifariş Et <IoIosArrowForward />
-                    </button>
                   </div>
                 ))}
               </div>
@@ -127,14 +148,6 @@ export default function ProductCard() {
                 <button>
                   Bütün məhsullara bax <IoIosArrowForward />
                 </button>
-
-                <div className={style.productCard_footer_navigateBox}>
-                  <FaInstagram
-                    className={style.productCard_footer_navigateBox_icon}
-                  />
-                  <FaTiktok className={`${style.icon} ${style.tiktok}`} />
-                  <FaLink className={`${style.icon} ${style.link}`} />
-                </div>
               </div>
 
             </div>
@@ -142,6 +155,5 @@ export default function ProductCard() {
         </Slider>
 
       </div>
-    </div>
   );
 }

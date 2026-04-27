@@ -78,7 +78,6 @@ const getSocialIcon = (type?: string) => {
   }
 };
 
-  // ✅ stable once-only data
   const randomizedData = useMemo(() => {
     return typedData.map((item) => ({
       ...item,
@@ -88,8 +87,6 @@ const getSocialIcon = (type?: string) => {
 
   return (
       <div className={style.ProductCardContainer}>
-
-        {/* CATEGORY SLIDER */}
         <Slider {...categorySettings} className={style.productCardCategory}>
           {typedData.map((item, idx) => (
             <div key={item.category ?? idx} className={style.categoryItem}>
@@ -149,11 +146,9 @@ const getSocialIcon = (type?: string) => {
                   Bütün məhsullara bax <IoIosArrowForward />
                 </button>
               </div>
-
             </div>
           ))}
         </Slider>
-
       </div>
   );
 }

@@ -1,7 +1,8 @@
 @charset "UTF-8";
-.simpleProductTitle {
-  font-weight: bold;
+.sliderText {
   margin-left: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .card {
@@ -11,17 +12,17 @@
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px;
   transition: 0.3s;
+  display: none;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
 
-/* IMAGE */
 .imageBox {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 400px;
 }
 
 .imageBox > img {
@@ -32,31 +33,17 @@
   display: block;
 }
 
-.imageSlider {
-  width: 100%;
-  height: 400px;
-}
-
-.imageSlider img {
-  width: 100%;
-  height: 400px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 12px;
-}
-
-.rightBar {
+.topBar {
   position: absolute;
   top: 12px;
+  left: 10px;
   right: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
   z-index: 10;
 }
 
-/* 👤 AVATAR */
 .avatar {
   width: 42px;
   height: 42px;
@@ -67,7 +54,6 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* ➕ FOLLOW BUTTON */
 .followBtn {
   padding: 4px 10px;
   font-size: 11px;
@@ -90,7 +76,6 @@
   background: #222;
 }
 
-/* ❤️ HEART */
 .heart {
   width: 38px;
   height: 38px;
@@ -177,98 +162,12 @@
   font-weight: 600;
 }
 
-/* 💬 OVERLAY */
-.commentOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(3px);
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-/* 💬 SHEET */
-.commentSheet {
-  width: 100%;
-  max-width: 520px;
-  height: 65%;
-  background: #fff;
-  border-radius: 20px 20px 0 0;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  animation: slideUp 0.25s ease;
-}
-
-.commentHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.commentList {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.commentItem {
-  padding: 8px 10px;
-  border-radius: 8px;
-  background: #f2f2f2;
-  font-size: 13px;
-}
-
-.commentInput {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.commentInput input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  outline: none;
-}
-
-.commentInput button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: black;
-  color: white;
-  cursor: pointer;
-}
-
-/* ANIMATION */
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-.productCardCategory {
-  margin-bottom: 20px;
-}
-.productCardCategory .slick-slide {
-  padding: 0 10px;
-}
-
 .categoryItem {
   text-align: center;
 }
 .categoryItem p {
-  background: white;
-  color: black;
+  background: #111;
+  color: white;
   padding: 10px 15px;
   border-radius: 20px;
   cursor: pointer;
@@ -278,10 +177,9 @@
   background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
 }
 
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-  .imageBox {
-    height: 400px;
+@media (max-width: 968px) {
+  .card {
+    display: block;
   }
   .avatar {
     width: 36px;
@@ -300,4 +198,4 @@
   .categoryItem p {
     font-size: 10px;
   }
-}/*# sourceMappingURL=SimpleProduct.module.css.map */
+}/*# sourceMappingURL=CenteredSlider.module.css.map */

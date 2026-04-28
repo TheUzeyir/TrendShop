@@ -1,7 +1,7 @@
-@charset "UTF-8";
-.simpleProductTitle {
-  font-weight: bold;
+.sliderText{
   margin-left: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .card {
@@ -11,71 +11,60 @@
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px;
   transition: 0.3s;
+  display: none;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
 
-/* IMAGE */
 .imageBox {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 400px;
 }
 
 .imageBox > img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: block;
 }
 
-.imageSlider {
-  width: 100%;
-  height: 400px;
-}
-
-.imageSlider img {
-  width: 100%;
-  height: 400px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 12px;
-}
-
-.rightBar {
+.topBar {
   position: absolute;
   top: 12px;
+  left: 10px;
   right: 10px;
+
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
+
   z-index: 10;
 }
 
-/* 👤 AVATAR */
 .avatar {
   width: 42px;
   height: 42px;
+
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
+
   border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* ➕ FOLLOW BUTTON */
 .followBtn {
   padding: 4px 10px;
   font-size: 11px;
   width: 65px;
   border-radius: 20px;
   border: none;
+
   background: #ff0050;
   color: #fff;
+
   cursor: pointer;
   transition: 0.2s;
   white-space: nowrap;
@@ -90,21 +79,23 @@
   background: #222;
 }
 
-/* ❤️ HEART */
 .heart {
   width: 38px;
   height: 38px;
+
   border-radius: 50%;
   border: none;
+
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   transition: 0.2s;
 }
-
 .heart:hover {
   transform: scale(1.15);
 }
@@ -113,13 +104,17 @@
 .commentBtn {
   width: 38px;
   height: 38px;
+
   border-radius: 50%;
   border: none;
+
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   transition: 0.2s;
 }
@@ -132,16 +127,21 @@
   position: absolute;
   bottom: 10px;
   left: 2%;
+
   width: 96%;
   padding: 12px;
   border-radius: 12px;
+
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
+
   z-index: 5;
 }
 
@@ -177,127 +177,50 @@
   font-weight: 600;
 }
 
-/* 💬 OVERLAY */
-.commentOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(3px);
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-/* 💬 SHEET */
-.commentSheet {
-  width: 100%;
-  max-width: 520px;
-  height: 65%;
-  background: #fff;
-  border-radius: 20px 20px 0 0;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  animation: slideUp 0.25s ease;
-}
-
-.commentHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.commentList {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.commentItem {
-  padding: 8px 10px;
-  border-radius: 8px;
-  background: #f2f2f2;
-  font-size: 13px;
-}
-
-.commentInput {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.commentInput input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  outline: none;
-}
-
-.commentInput button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: black;
-  color: white;
-  cursor: pointer;
-}
-
-/* ANIMATION */
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-.productCardCategory {
-  margin-bottom: 20px;
-}
-.productCardCategory .slick-slide {
-  padding: 0 10px;
-}
-
 .categoryItem {
   text-align: center;
-}
-.categoryItem p {
-  background: white;
-  color: black;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.categoryItem p:hover {
-  background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
+  
+  p {
+    background: #111;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  p:hover {
+    background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
+  }
 }
 
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-  .imageBox {
-    height: 400px;
-  }
+@media (max-width: 968px) {
+
+    .card {
+        display: block;
+    }
+
   .avatar {
     width: 36px;
     height: 36px;
   }
+
   .rightBar {
     gap: 8px;
   }
+
   .followBtn {
     font-size: 10px;
     padding: 3px 8px;
   }
+
   .categoryItem {
-    text-align: center;
-  }
-  .categoryItem p {
+  text-align: center;
+  
+  p {
     font-size: 10px;
   }
-}/*# sourceMappingURL=SimpleProduct.module.css.map */
+
+}
+}
+

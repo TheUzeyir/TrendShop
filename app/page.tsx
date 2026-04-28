@@ -11,13 +11,16 @@ import Footer from "@/components/Footer";
 import { FaStore, FaShareAlt } from "react-icons/fa";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { MdEmail, MdPhone } from "react-icons/md";
-import SingleProductSlider from "@/components/SingleProduct";
 import SimpleProduct from "@/components/SimpleProduct";
+import data from "@/data/data.json";
+import HeaderMobile from "@/components/HeaderMobile";
+import CenteredSlider from "@/components/CenteredSlider";
 
 export default function Home() {
   return (
     <div className={style.HomePageContainer}>
       <Header/>
+      <HeaderMobile/>
       <div className={style.HomePage}>
         <div className={style.HomePage_imgBox}>
           <img className={style.img} src={img.src} alt="" />
@@ -42,8 +45,8 @@ export default function Home() {
             </div>
           </div>
         </div> 
-      <SingleProductSlider/>
       <SimpleProduct/>
+      <CenteredSlider/>
       <ProductCard/>
         <div className="container">
           <div className={style.servicesBox}>

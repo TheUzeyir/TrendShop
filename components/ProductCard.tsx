@@ -19,12 +19,11 @@ const Slider = dynamic(() => import("react-slick"), {
 
 const typedData = data as Product[];
 
-// ✅ stable shuffle (NO Math.random)
 const getRandomItems = (items: ProductItem[]) => {
   const copy = [...items];
 
   for (let i = copy.length - 1; i > 0; i--) {
-    const j = (i * 31 + 7) % (i + 1); // deterministic pseudo-random
+    const j = (i * 31 + 7) % (i + 1); 
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
 
@@ -32,15 +31,6 @@ const getRandomItems = (items: ProductItem[]) => {
 };
  
 export default function ProductCard() {
-  const categorySettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-  };
 
 const settings = {
   dots: false,
@@ -87,15 +77,6 @@ const getSocialIcon = (type?: string) => {
 
   return (
       <div className={style.ProductCardContainer}>
-        <Slider {...categorySettings} className={style.productCardCategory}>
-          {typedData.map((item, idx) => (
-            <div key={item.category ?? idx} className={style.categoryItem}>
-              <p>{item.category}</p>
-            </div>
-          ))}
-        </Slider>
-
-        {/* PRODUCT SLIDER */}
         <Slider {...settings} className={style.productCard}>
           {randomizedData.map((item) => (
             <div

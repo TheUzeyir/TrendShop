@@ -82,14 +82,9 @@
 
 /* BTN 1 */
 .HomePage_imgBoxbtn1 {
-  background: white;
-  color: black;
-  border: none;
-}
-
-.HomePage_imgBoxbtn1:hover {
   background: black;
   color: white;
+  border: none;
 }
 
 /* BTN 2 */
@@ -103,9 +98,6 @@
   background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
 }
 
-/* =========================
-   SERVICES
-========================= */
 
 .servicesBox {
   text-align: center;
@@ -130,6 +122,7 @@
   color: white;
   transition: 0.3s;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px;
+  border: 1px solid white;
 }
 
 .servicesBox_card_item:hover {
@@ -181,7 +174,9 @@
 
   &_card {
     position: relative;
-    background: #fff;
+    background: black;
+    color: white;
+    border: 1px solid white;
     padding: 30px 20px;
     border-radius: 16px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
@@ -234,8 +229,9 @@
   width: 100%;
   padding: 40px 20px;
   text-align: center;
-  background: linear-gradient(135deg, #f5f7ff, #eef1ff);
-
+  border: 1px solid white;
+  border-radius: 10px;
+  
   &_title {
     font-size: 34px;
     font-weight: 700;
@@ -248,7 +244,6 @@
     padding: 40px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.7);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   }
 
@@ -273,9 +268,8 @@
       left: 15px;
       top: 50%;
       transform: translateY(-50%);
-      background: #fff;
       padding: 0 6px;
-      color: #999;
+      color: white;
       font-size: 13px;
       pointer-events: none;
       transition: 0.3s;

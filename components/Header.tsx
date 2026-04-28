@@ -1,13 +1,11 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import style from "@/styles/header/header.module.scss";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
-import { FaHome } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
- 
+import MobileNav from "./MobilNav";
+
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
@@ -54,7 +52,6 @@ export default function Header() {
 
   return (
     <>
-      {/* ================= HEADER ================= */}
       <header
         className={`${style.header_container} ${
           scrolled ? style.scrolled : ""
@@ -62,13 +59,9 @@ export default function Header() {
       >
         <div className="container">
           <div className={style.header}>
-
-            {/* LOGO */}
             <h1 className={style.logo} onClick={() => router.push("/")}>
               TrendShop
             </h1>
-
-            {/* SEARCH (DESKTOP) */}
             <form onSubmit={handleSearch} className={style.searchBox}>
               <input
                 type="text"
@@ -77,13 +70,10 @@ export default function Header() {
                 onChange={(e) => setQuery(e.target.value)}
                 className={style.searchInput}
               />
-
               <button type="submit" className={style.searchButton}>
                 <IoSearch />
               </button>
             </form>
-
-            {/* NAV (DESKTOP) */}
             <nav className={style.nav}>
               {navItems.map((item) => {
                 const isActive = pathname === item.path;
@@ -101,7 +91,6 @@ export default function Header() {
                   </Link>
                 );
               })}
-
               <div
                 onClick={handleAdminClick}
                 className={`${style.nav_link} ${
@@ -112,53 +101,10 @@ export default function Header() {
                 <span className={style.underline}></span>
               </div>
             </nav>
-
-            {/* 🔍 MOBILE SEARCH ICON */}
-            <div
-              className={style.mobileSearch}
-              onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
-            >
-              <IoSearch />
-            </div>
           </div>
-          {mobileSearchOpen && (
-            <form onSubmit={handleSearch} className={style.mobileSearchBox}>
-              <input
-                type="text"
-                placeholder="Search..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </form>
-          )}
         </div>
       </header>
-      <div className={style.mobileNav}>
-        <button onClick={() => router.push("/")}>
-          <FaHome />
-          <span>Home</span>
-        </button>
-
-        <button onClick={() => router.push("/messages")}>
-          💬
-          <span>Messages</span>
-        </button>
-
-        <button onClick={() => router.push("/create")}>
-          ➕
-          <span>Create</span>
-        </button>
-
-        <button onClick={handleAdminClick}>
-          <FaUser />
-          <span>Profile</span>
-        </button>
-
-        <button onClick={() => router.push("/settings")}>
-          ⚙️
-          <span>Settings</span>
-        </button>
-      </div>
+      <MobileNav onProfileClick={handleAdminClick} />
     </>
   );
 }

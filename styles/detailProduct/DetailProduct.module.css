@@ -1,0 +1,267 @@
+@charset "UTF-8";
+.wrapper {
+  padding: 20px;
+  background: #0f0f0f;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 50px;
+}
+.backLink:hover {
+  color: #00ff99;
+  transform: translateX(-3px);
+}
+
+/* TOP SECTION */
+.top {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* MEDIA */
+.mediaBox {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+}
+
+.media {
+  width: 100%;
+  height: 420px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
+/* INFO */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.price {
+  color: #00ff99;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* ORDER BUTTON */
+.orderBtn {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  background: #00ff99;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.orderBtn:hover {
+  background: #00cc77;
+  transform: scale(1.03);
+}
+
+/* LINK */
+.link {
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  transition: 0.3s;
+}
+.link:hover {
+  color: #00ff99;
+}
+
+/* RELATED SECTION */
+.relatedSection1 {
+  margin-top: 40px;
+}
+.relatedSection1 h3 {
+  margin-bottom: 15px;
+}
+
+.relatedSection2 {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.relatedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.relatedHeader button {
+  padding: 10px 16px;
+  border: 1px solid #00ff99;
+  background: transparent;
+  color: #00ff99;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.relatedHeader {
+  /* hover effekti */
+}
+.relatedHeader button:hover {
+  background: #00ff99;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 255, 153, 0.25);
+}
+.relatedHeader {
+  /* click effekti */
+}
+.relatedHeader button:active {
+  transform: scale(0.96);
+}
+.relatedHeader {
+  /* glow animation */
+}
+.relatedHeader button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(0, 255, 153, 0.15);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+.relatedHeader button:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+/* CARD */
+.card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card:active {
+  transform: scale(0.97);
+}
+
+/* MEDIA INSIDE CARD */
+.cardMedia {
+  width: 100%;
+  height: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background: #000;
+  display: block;
+}
+
+/* CARD INFO */
+.cardInfo {
+  padding: 10px;
+}
+.cardInfo h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.cardInfo p {
+  color: #00ff99;
+  font-weight: bold;
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+@media (max-width: 900px) {
+  .top {
+    flex-direction: column;
+  }
+  .media {
+    height: 300px;
+  }
+}
+/* TABLET */
+@media (max-width: 1100px) {
+  .relatedGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* MOBILE */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 12px;
+  }
+  .backLink {
+    margin-top: 10px;
+  }
+  .media {
+    height: 260px;
+    border-radius: 10px;
+  }
+  .price {
+    font-size: 18px;
+  }
+  .orderBtn {
+    width: 100%;
+  }
+  /* RELATED → HORIZONTAL SCROLL (TikTok feel) */
+  .relatedGrid {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+  }
+  .card {
+    min-width: 70%;
+    scroll-snap-align: start;
+  }
+  .cardMedia {
+    height: 150px;
+  }
+}
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+  .media {
+    height: 220px;
+  }
+  .cardMedia {
+    height: 130px;
+  }
+  .cardInfo h4 {
+    font-size: 13px;
+  }
+  .cardInfo p {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=DetailProduct.module.css.map */

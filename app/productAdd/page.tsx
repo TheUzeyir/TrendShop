@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import styles from "@/styles/productadd/ProductAdd.module.scss";
 
-/* ---------------- TYPES ---------------- */
 type MediaItem = {
   file: File;
   url: string;
@@ -23,25 +23,19 @@ export default function TikTokUploader() {
   const [seconds, setSeconds] = useState(0);
   const [selected, setSelected] = useState<MediaItem | null>(null);
 
-  /* ================= CAMERA ================= */
   const startCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: false,
-      });
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: false,
+    });
 
-      streamRef.current = stream;
+    streamRef.current = stream;
 
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-    } catch (err) {
-      console.error("Camera error:", err);
+    if (videoRef.current) {
+      videoRef.current.srcObject = stream;
     }
   };
 
-  /* ================= START RECORD ================= */
   const startRecord = () => {
     if (!streamRef.current) return;
 
@@ -51,47 +45,37 @@ export default function TikTokUploader() {
     chunksRef.current = [];
 
     recorder.ondataavailable = (e) => {
-      if (e.data.size > 0) {
-        chunksRef.current.push(e.data);
-      }
+      if (e.data.size > 0) chunksRef.current.push(e.data);
     };
 
     recorder.onstop = () => {
       const blob = new Blob(chunksRef.current, { type: "video/mp4" });
       const url = URL.createObjectURL(blob);
 
-      const file = new File([blob], `video-${Date.now()}.mp4`, {
+      const file = new File([blob], `video.mp4`, {
         type: "video/mp4",
       });
 
-      setMedia((prev) => [
-        ...prev,
-        { file, url, type: "video" },
-      ]);
+      setMedia((prev) => [...prev, { file, url, type: "video" }]);
     };
 
     recorder.start();
     setRecording(true);
 
-    /* TIMER START */
     setSeconds(0);
 
     timerRef.current = setInterval(() => {
-      setSeconds((prev) => prev + 1);
+      setSeconds((s) => s + 1);
     }, 1000);
   };
 
-  /* ================= STOP RECORD ================= */
   const stopRecord = () => {
-    const recorder = recorderRef.current;
+    const r = recorderRef.current;
 
-    if (recorder && recorder.state === "recording") {
-      recorder.stop();
-    }
+    if (r && r.state === "recording") r.stop();
 
     setRecording(false);
 
-    /* TIMER STOP */
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
@@ -100,7 +84,6 @@ export default function TikTokUploader() {
     if (step === 1) setStep(2);
   };
 
-  /* ================= GALLERY ================= */
   const addGallery = (files: FileList | null) => {
     if (!files) return;
 
@@ -114,7 +97,6 @@ export default function TikTokUploader() {
     setStep(2);
   };
 
-  /* ================= INIT CAMERA ================= */
   useEffect(() => {
     startCamera();
 
@@ -124,63 +106,44 @@ export default function TikTokUploader() {
     };
   }, []);
 
-  /* ================= FORMAT TIME ================= */
   const formatTime = (s: number) => {
     const m = Math.floor(s / 60);
     const sec = s % 60;
-
     return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
   };
 
-  /* ======================================================
-     STEP 1 — CAPTURE
-  ====================================================== */
+  /* ---------------- STEP 1 ---------------- */
   if (step === 1) {
     return (
-      <div style={styles.capture}>
-        {/* CAMERA */}
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          style={styles.camera}
-        />
+      <div className={styles.capture}>
+        <video ref={videoRef} autoPlay playsInline className={styles.camera} />
 
-        {/* TIMER */}
         {recording && (
-          <div style={styles.timer}>
+          <div className={styles.timer}>
             REC {formatTime(seconds)}
           </div>
         )}
 
-        {/* HOLD BUTTON */}
-        <div style={styles.holdWrap}>
+        <div className={styles.holdWrap}>
           <div
-            style={{
-              ...styles.holdBtn,
-              background: recording ? "red" : "#fff",
-            }}
+            className={styles.holdBtn}
+            style={{ background: recording ? "red" : "#fff" }}
             onPointerDown={(e) => {
               e.preventDefault();
               startRecord();
             }}
-            onPointerUp={(e) => {
-              e.preventDefault();
-              stopRecord();
-            }}
+            onPointerUp={stopRecord}
             onPointerLeave={stopRecord}
-            onPointerCancel={stopRecord}
           />
         </div>
 
-        {/* GALLERY */}
-        <label style={styles.galleryBtn}>
+        <label className={styles.galleryBtn}>
           📁
           <input
             type="file"
             multiple
-            accept="image/*,video/*"
             hidden
+            accept="image/*,video/*"
             onChange={(e) => addGallery(e.target.files)}
           />
         </label>
@@ -188,49 +151,34 @@ export default function TikTokUploader() {
     );
   }
 
-  /* ======================================================
-     STEP 2 — PREVIEW
-  ====================================================== */
+  /* ---------------- STEP 2 ---------------- */
   if (step === 2) {
     return (
-      <div style={styles.preview}>
+      <div className={styles.preview}>
         <h3 style={{ color: "#fff" }}>Preview</h3>
 
-        <div style={styles.grid}>
+        <div className={styles.grid}>
           {media.map((m, i) => (
             <div
               key={i}
-              style={styles.item}
+              className={styles.item}
               onClick={() => setSelected(m)}
             >
               {m.type === "video" ? (
-                <video
-                  src={m.url}
-                  style={styles.media}
-                  muted
-                  autoPlay
-                  loop
-                />
+                <video src={m.url} className={styles.media} />
               ) : (
-                <img src={m.url} style={styles.media} />
+                <img src={m.url} className={styles.media} />
               )}
             </div>
           ))}
         </div>
 
-        <button
-          style={styles.nextBtn}
-          onClick={() => setStep(3)}
-        >
+        <button className={styles.nextBtn} onClick={() => setStep(3)}>
           Next →
         </button>
 
-        {/* FULLSCREEN */}
         {selected && (
-          <div
-            style={styles.modal}
-            onClick={() => setSelected(null)}
-          >
+          <div className={styles.modal} onClick={() => setSelected(null)}>
             {selected.type === "video" ? (
               <video src={selected.url} controls autoPlay />
             ) : (
@@ -242,134 +190,16 @@ export default function TikTokUploader() {
     );
   }
 
-  /* ======================================================
-     STEP 3 — FORM
-  ====================================================== */
+  /* ---------------- STEP 3 ---------------- */
   return (
-    <div style={styles.form}>
+    <div className={styles.form}>
       <h2 style={{ color: "#fff" }}>Product Info</h2>
 
-      <input placeholder="Name" style={styles.input} />
-      <textarea placeholder="Description" style={styles.input} />
-      <input placeholder="Price" style={styles.input} />
+      <input className={styles.input} placeholder="Name" />
+      <input className={styles.input} placeholder="Description" />
+      <input className={styles.input} placeholder="Price" />
 
-      <button style={styles.publish}>
-        Publish
-      </button>
+      <button className={styles.nextBtn}>Publish</button>
     </div>
   );
 }
-
-/* ---------------- STYLES ---------------- */
-const styles: any = {
-  capture: {
-    height: "100vh",
-    background: "#000",
-    position: "relative",
-  },
-
-  camera: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-
-  timer: {
-    position: "absolute",
-    top: 40,
-    left: "50%",
-    transform: "translateX(-50%)",
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-    background: "rgba(0,0,0,0.5)",
-    padding: "6px 12px",
-    borderRadius: 8,
-  },
-
-  holdWrap: {
-    position: "absolute",
-    bottom: 120,
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-  },
-
-  holdBtn: {
-    width: 85,
-    height: 85,
-    borderRadius: "50%",
-    border: "4px solid white",
-  },
-
-  galleryBtn: {
-    position: "absolute",
-    bottom: 40,
-    right: 20,
-    fontSize: 30,
-    color: "#fff",
-  },
-
-  preview: {
-    minHeight: "100vh",
-    background: "#111",
-    padding: 20,
-  },
-
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: 10,
-  },
-
-  item: {
-    height: 100,
-    borderRadius: 10,
-    overflow: "hidden",
-  },
-
-  media: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-
-  nextBtn: {
-    marginTop: 20,
-    width: "100%",
-    padding: 12,
-    background: "red",
-    color: "#fff",
-    border: "none",
-    borderRadius: 8,
-  },
-
-  modal: {
-    position: "fixed",
-    inset: 0,
-    background: "rgba(0,0,0,0.9)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  form: {
-    minHeight: "100vh",
-    background: "#111",
-    padding: 20,
-  },
-
-  input: {
-    width: "100%",
-    padding: 10,
-    marginBottom: 10,
-  },
-
-  publish: {
-    width: "100%",
-    padding: 12,
-    background: "green",
-    color: "#fff",
-    border: "none",
-  },
-};

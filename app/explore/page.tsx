@@ -3,12 +3,9 @@
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
 import { Mousewheel } from "swiper/modules";
-
 import { IoIosHeart } from "react-icons/io";
 import { FaComment } from "react-icons/fa";
-
 import style from "@/styles/explore/Explore.module.scss";
 import data from "@/data/data.json";
 import MobileNav from "@/components/MobilNav";

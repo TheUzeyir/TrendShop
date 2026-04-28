@@ -9,22 +9,22 @@ import data from "@/data/data.json";
 import style from "@/styles/centeredSlider/CenteredSlider.module.scss";
 
 export default function CenteredSlider() {
-  const [liked, setLiked] = useState({});
-  const [followed, setFollowed] = useState({});
+const [liked, setLiked] = useState<Record<string, boolean>>({});
+const [followed, setFollowed] = useState<Record<string, boolean>>({});
 
-  const toggleLike = (key) => {
-    setLiked((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
+const toggleLike = (key: string) => {
+  setLiked((prev) => ({
+    ...prev,
+    [key]: !prev[key],
+  }));
+};
 
-  const toggleFollow = (key) => {
-    setFollowed((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
+const toggleFollow = (key: string) => {
+  setFollowed((prev) => ({
+    ...prev,
+    [key]: !prev[key],
+  }));
+};
 
   const products = useMemo(() => {
     return data.flatMap((item) =>
@@ -35,6 +35,35 @@ export default function CenteredSlider() {
       }))
     );
   }, []);
+
+    const renderMedia = (media: string | string[], name: string) => {
+      const src = Array.isArray(media) ? media[0] : media;
+  
+      if (!src) return null;
+  
+      const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
+  
+      if (isVideo) {
+        return (
+          <video
+            src={src}
+            className={style.media}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        );
+      }
+  
+      return (
+        <img
+          src={src}
+          alt={name}
+          className={style.media}
+        />
+      );
+    };
  
   return (
     <div className={style.container}>
@@ -57,8 +86,7 @@ export default function CenteredSlider() {
             <SwiperSlide key={key}>
               <div className={style.card}>
                 <div className={style.imageBox}>
-                <img
-                  src={Array.isArray(product.img) ? product.img[0] : product.img} alt={product.name}/>
+                {renderMedia(product.img, product.name)}
                   <div className={style.topBar}>
                     <img
                       className={style.avatar}
@@ -72,7 +100,7 @@ export default function CenteredSlider() {
                       <IoIosHeart
                         style={{
                           color: liked[key] ? "red" : "white",
-                        }}
+                        }} 
                       />
                     </button>
                   </div>

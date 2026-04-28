@@ -177,6 +177,14 @@
   background: linear-gradient(90deg, #ff2d95, #8b5cf6, #3b82f6);
 }
 
+.media {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
 @media (max-width: 968px) {
   .card {
     display: block;

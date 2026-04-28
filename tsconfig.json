@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "components/CenteredSlider.jsx"  ],
+, "components/CenteredSlider.tsx"  ],
   "exclude": ["node_modules"]
 }

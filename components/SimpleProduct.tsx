@@ -45,7 +45,7 @@ export default function SimpleProduct() {
 
     setCommentText((prev) => ({
       ...prev,
-      [key]: "",
+      [key]: "", 
     }));
   };
 

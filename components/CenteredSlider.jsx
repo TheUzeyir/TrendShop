@@ -35,7 +35,7 @@ export default function CenteredSlider() {
       }))
     );
   }, []);
-
+ 
   return (
     <div className={style.container}>
       <p className={style.sliderText}>Ən çox alınanlar</p>
@@ -57,7 +57,8 @@ export default function CenteredSlider() {
             <SwiperSlide key={key}>
               <div className={style.card}>
                 <div className={style.imageBox}>
-                  <img src={product.img} alt={product.name} />
+                <img
+                  src={Array.isArray(product.img) ? product.img[0] : product.img} alt={product.name}/>
                   <div className={style.topBar}>
                     <img
                       className={style.avatar}

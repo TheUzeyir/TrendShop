@@ -16,6 +16,7 @@ type CommentMap = Record<string, string[]>;
 type TextMap = Record<string, string>;
 type FollowMap = Record<string, boolean>;
 type LikeMap = Record<string, boolean>;
+
 const typedData = data as Product[];
 
 export default function SimpleProduct() {
@@ -48,6 +49,35 @@ export default function SimpleProduct() {
     }));
   };
 
+  const renderMedia = (media: string | string[], name: string) => {
+    const src = Array.isArray(media) ? media[0] : media;
+
+    if (!src) return null;
+
+    const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
+
+    if (isVideo) {
+      return (
+        <video
+          src={src}
+          className={style.media}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      );
+    }
+
+    return (
+      <img
+        src={src}
+        alt={name}
+        className={style.media}
+      />
+    );
+  };
+
   const products = useMemo(() => {
     return data.flatMap((item) =>
       item.items.map((p) => ({
@@ -58,81 +88,74 @@ export default function SimpleProduct() {
     );
   }, []);
 
-const categorySettings = {
-  dots: false,
-  arrows: false,
-  infinite: true,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2500,
-  responsive: [
-    {
-      breakpoint: 968,
-      settings: {
-        slidesToShow: 4,
+  const categorySettings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    responsive: [
+      {
+        breakpoint: 968,
+        settings: { slidesToShow: 4 },
       },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 3,
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 3 },
       },
-    },
-  ],
-};
+    ],
+  };
 
-const sliderSettings = {
-  dots: false,
-  arrows: false,
-  infinite: true,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2500,
-  responsive: [
-    {
-      breakpoint: 1080,
-      settings: {
-        slidesToShow: 3,
+  const sliderSettings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    responsive: [
+      {
+        breakpoint: 1080,
+        settings: { slidesToShow: 3 },
       },
-    },
-    {
-      breakpoint: 968,
-      settings: {
-        slidesToShow: 2,
+      {
+        breakpoint: 968,
+        settings: { slidesToShow: 2 },
       },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1,
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 1 },
       },
-    },
-  ],
-};
+    ],
+  };
 
   return (
     <div className={style.container}>
+      {/* CATEGORY SLIDER */}
       <Slider {...categorySettings} className={style.productCardCategory}>
-          {typedData.map((item, idx) => (
-            <div key={item.category ?? idx} className={style.categoryItem}>
-              <p>{item.category}</p>
-            </div>
-          ))} 
-        </Slider>
-        <p className={style.simpleProductTitle}>Tovsiyye Edilenler</p>
+        {typedData.map((item, idx) => (
+          <div key={item.category ?? idx} className={style.categoryItem}>
+            <p>{item.category}</p>
+          </div>
+        ))}
+      </Slider>
+
+      <p className={style.simpleProductTitle}>Tovsiyye Edilenler</p>
+
+      {/* PRODUCT SLIDER */}
       <Slider {...sliderSettings}>
         {products.map((product, idx) => {
-          const key = `${product.img}-${product.name}-${idx}`;
+          const key = `${product.name}-${idx}`;
+
           return (
             <div key={key} className={style.card}>
-              <div className={style.imageBox}>
-                <img src={product.img} alt={product.name} />
-
+              <div className={style.imageBox}>                
+                {renderMedia(product.img, product.name)}
                 <div className={style.rightBar}>
                   <img className={style.avatar} src={product.person} />
-
                   <button
                     className={style.heart}
                     onClick={() => toggleLike(key)}
@@ -175,12 +198,14 @@ const sliderSettings = {
                     </span>
                   </div>
                 </div>
+
               </div>
             </div>
           );
         })}
       </Slider>
 
+      {/* COMMENTS MODAL */}
       {openComments && (
         <div
           className={style.commentOverlay}

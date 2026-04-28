@@ -12,7 +12,6 @@ import data from "@/data/data.json";
 import { Product, ProductItem } from "@/types/index";
 import { useMemo } from "react";
 
-// 🔥 IMPORTANT: SSR disabled (fixes hydration error)
 const Slider = dynamic(() => import("react-slick"), {
   ssr: false,
 });

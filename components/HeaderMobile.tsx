@@ -5,7 +5,7 @@ export default function HeaderMobile() {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.name}>
+        <div className={styles.name}> 
           {data[0].name}
         </div>
 

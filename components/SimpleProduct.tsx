@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from "@/data/data.json";
 import { Product } from "@/types/index";
+import type { Settings } from "react-slick";
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
@@ -108,29 +109,26 @@ export default function SimpleProduct() {
     ],
   };
 
-  const sliderSettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    responsive: [
-      {
-        breakpoint: 1080,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 968,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 1 },
-      },
-    ],
-  };
+const sliderSettings: Settings = {
+  dots: false,
+  arrows: false,
+  infinite: true,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2500,
+
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: { slidesToShow: 3 },
+    },
+    {
+      breakpoint: 768,
+      settings: "unslick" as const,
+    },
+  ],
+};
 
   return (
     <div className={style.container}>
@@ -142,7 +140,6 @@ export default function SimpleProduct() {
           </div>
         ))}
       </Slider>
-
       <p className={style.simpleProductTitle}>Tovsiyye Edilenler</p>
 
       {/* PRODUCT SLIDER */}

@@ -26,7 +26,7 @@ export default function MobileNav({ onProfileClick }: Props) {
           <span>Explore</span>
         </button>
         
-        <button onClick={() => router.push("/create")}>
+        <button onClick={() => router.push("/productAdd")}>
           <FaPlus/>
           <span>Create</span>
         </button>

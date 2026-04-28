@@ -238,9 +238,9 @@
     display: block;
     position: fixed;
     bottom: 10px;
-    left: 15px;
+    left: 12px;
     border-radius: 10px;
-    width: 96%;
+    width: 92%;
     height: 65px;
     background: transparent;
     backdrop-filter: blur(20px);

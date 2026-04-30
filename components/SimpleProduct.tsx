@@ -125,7 +125,7 @@ const sliderSettings: Settings = {
     },
     {
       breakpoint: 768,
-      settings: "unslick" as const,
+      settings: { slidesToShow: 1 },
     },
   ],
 };
